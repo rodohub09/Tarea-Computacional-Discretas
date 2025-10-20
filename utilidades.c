@@ -2,12 +2,12 @@
 #include <string.h>
 #include <stdlib.h>
 
-int leerGrafo(int argc, char *argv[]){
+char **leerGrafo(char *input, int *tamaño){
 
-  char direccion[8+strlen(argv[argc-1])];
+  char direccion[8+strlen(input)];
   strcpy(direccion, "Grafos/");
-  strcat(direccion, argv[argc - 1]);
-  printf("%s",direccion);
+  strcat(direccion, input);
+  
   FILE *fp = fopen(direccion,"r");
   if (fp == NULL) {
     perror("Error al abrir el archivo");
@@ -15,21 +15,24 @@ int leerGrafo(int argc, char *argv[]){
   }
   int cantVectores;
   fscanf(fp,"%d",&cantVectores);
-
+  *tamaño = cantVectores;
+  
   char **grafo = malloc(cantVectores*sizeof(char *));
   for(int i=0;i<cantVectores;i++){
     grafo[i] = (char *)malloc(cantVectores*sizeof(char));
     for(int j=0;j<cantVectores;j++){
       fscanf(fp," %c",&grafo[i][j]);
-      printf("%c ",grafo[i][j]);
     }
-    printf("\n");
   }
-
-
-  limpiar_matriz(grafo);
+  
   fclose(fp);
 
-  return 0;
+  return grafo;
 }
 
+void limpiar_matriz(char **input){
+  for (int i = 0; input[i] != NULL; i++) {
+    free(input[i]);
+  }
+  free(input);
+}
