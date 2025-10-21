@@ -11,7 +11,7 @@ char **leerGrafo(char *input, int *tamaño){
   FILE *fp = fopen(direccion,"r");
   if (fp == NULL) {
     perror("Error al abrir el archivo");
-    return 1;
+    return NULL;
   }
   int cantVectores;
   fscanf(fp,"%d",&cantVectores);
