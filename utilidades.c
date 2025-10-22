@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 char **leerGrafo(char *input, int *tamaño){
-
+  
   char direccion[8+strlen(input)];
   strcpy(direccion, "Grafos/");
   strcat(direccion, input);
@@ -30,8 +30,8 @@ char **leerGrafo(char *input, int *tamaño){
   return grafo;
 }
 
-void limpiar_matriz(char **input){
-  for (int i = 0; input[i] != NULL; i++) {
+void limpiar_matriz(char **input, int tamaño){
+  for (int i = 0; i < tamaño; i++) {
     free(input[i]);
   }
   free(input);

@@ -7,6 +7,6 @@
 
 char **leerGrafo(char *input, int *tamaño);
 
-void limpiar_matriz(char **matriz);
+void limpiar_matriz(char **matriz, int tamaño);
 
 #endif
